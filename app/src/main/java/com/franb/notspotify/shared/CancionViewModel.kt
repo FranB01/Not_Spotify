@@ -14,7 +14,7 @@ class CancionViewModel: ViewModel(){
         _playing.value = nuevoValor
     }
 
-    private val _cancion = MutableStateFlow(Cancion("Título de la cancion", R.drawable.smt4,0))
+    private val _cancion = MutableStateFlow(Cancion("Título de la cancion", R.drawable.smt4, R.raw.smt4_tokyo))
     val cancion = _cancion.asStateFlow()
 
     private val _tiempoActual = MutableStateFlow(0)

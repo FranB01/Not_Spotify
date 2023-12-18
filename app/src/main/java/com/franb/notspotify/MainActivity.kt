@@ -15,6 +15,7 @@ import com.franb.notspotify.ui.theme.NotSpotifyTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ListaCanciones.cargarCanciones()
         setContent {
             NotSpotifyTheme {
                 // A surface container using the 'background' color from the theme

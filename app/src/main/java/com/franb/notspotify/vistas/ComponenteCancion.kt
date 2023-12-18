@@ -17,6 +17,7 @@ import androidx.compose.material.icons.rounded.Repeat
 import androidx.compose.material.icons.rounded.Shuffle
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Surface
@@ -71,22 +72,21 @@ fun ComponenteCancion() {
 
             // anterior, siguiente, play/stop, loop, shuffle
             Row(
-                horizontalArrangement = Arrangement.Center,
+                horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
                 // loop
-                Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(2.dp)) {
-                    // TODO if looping icono relleno else icono normal
+                IconButton(onClick = { /*TODO*/ }) {
                     Icon(Icons.Rounded.Repeat, "Repetir")
                 }
 
                 // anterior
-                Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(2.dp)) {
+                IconButton(onClick = { /*TODO*/ }) {
                     Icon(Icons.AutoMirrored.Rounded.KeyboardArrowLeft, "Cancion anterior")
                 }
 
                 // play pause
-                Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(2.dp)) {
+                IconButton(onClick = { /*TODO*/ }) {
                     if (viewModel.playing.value) {
                         Icon(Icons.Rounded.PlayArrow, "Play")
                     } else {
@@ -95,12 +95,12 @@ fun ComponenteCancion() {
                 }
 
                 // siguiente
-                Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(2.dp)) {
+                IconButton(onClick = { /*TODO*/ }) {
                     Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, "Cancion siguiente")
                 }
 
                 // shuffle
-                Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(2.dp)) {
+                IconButton(onClick = { /*TODO*/ }) {
                     Icon(Icons.Rounded.Shuffle, "Shuffle")
                 }
             }
@@ -114,7 +114,6 @@ fun ComponenteCancion() {
 @Composable
 fun PreviewCancion() {
     NotSpotifyTheme {
-        // A surface container using the 'background' color from the theme
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
