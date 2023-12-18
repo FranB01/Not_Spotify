@@ -4,8 +4,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
@@ -24,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.franb.notspotify.Cancion
 import com.franb.notspotify.Greeting
@@ -36,62 +39,80 @@ fun ComponenteCancion() {
 
     val viewModel: CancionViewModel = viewModel()
 
-    Column {
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        // TITULO E IMAGEN
         Text(text = "Now playing")
         Text(text = viewModel.cancion.value.nombre)
         Image(
             painter = painterResource(id = viewModel.cancion.value.imagen),
-            contentDescription = null
+            contentDescription = null,
+            //modifier = Modifier.fillMaxSize()
         )
-        Slider(value = viewModel.tiempoActual.value.toFloat(),
-            valueRange = 0f..viewModel.duracion.value.toFloat(),
-            onValueChange = {
-                /* TODO */
-            })
-        Text(text = "0:00 / 2:53") // todo
 
-        Row(
-            horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth()
-        ){
+        // CONTROLES
+        Column{
+            Slider(
+                value = viewModel.tiempoActual.value.toFloat(),
+                valueRange = 0f..viewModel.duracion.value.toFloat(),
+                modifier = Modifier.padding(horizontal = 10.dp),
+                onValueChange = {
+                    /* TODO */
+                })
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                // TODO
+                Text(text = "0:00", modifier = Modifier.padding(horizontal = 10.dp))
+                Text(text = "3:26", modifier = Modifier.padding(horizontal = 10.dp))
+            }
+
             // anterior, siguiente, play/stop, loop, shuffle
-            // loop
-            Button(onClick = { /*TODO*/ }) {
-                // TODO if looping icono relleno else icono normal
-                Icon(Icons.Rounded.Repeat, "Repetir")
-            }
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                // loop
+                Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(2.dp)) {
+                    // TODO if looping icono relleno else icono normal
+                    Icon(Icons.Rounded.Repeat, "Repetir")
+                }
 
-            // anterior
-            Button(onClick = { /*TODO*/ }) {
-                Icon(Icons.AutoMirrored.Rounded.KeyboardArrowLeft, "Cancion anterior")
-            }
+                // anterior
+                Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(2.dp)) {
+                    Icon(Icons.AutoMirrored.Rounded.KeyboardArrowLeft, "Cancion anterior")
+                }
 
-            // play pause
-            Button(onClick = { /*TODO*/ }) {
-                if (viewModel.playing.value) {
-                    Icon(Icons.Rounded.PlayArrow, "Play")
-                } else {
-                    Icon(Icons.Rounded.Pause, "Pausar")
+                // play pause
+                Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(2.dp)) {
+                    if (viewModel.playing.value) {
+                        Icon(Icons.Rounded.PlayArrow, "Play")
+                    } else {
+                        Icon(Icons.Rounded.Pause, "Pausar")
+                    }
+                }
+
+                // siguiente
+                Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(2.dp)) {
+                    Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, "Cancion siguiente")
+                }
+
+                // shuffle
+                Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(2.dp)) {
+                    Icon(Icons.Rounded.Shuffle, "Shuffle")
                 }
             }
 
-            // siguiente
-            Button(onClick = { /*TODO*/ }) {
-                Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, "Cancion siguiente")
-            }
-
-            // shuffle
-            Button(onClick = { /*TODO*/ }) {
-                Icon(Icons.Rounded.Shuffle, "Shuffle")
-            }
         }
 
     }
 }
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
-fun PreviewCancion(){
+fun PreviewCancion() {
     NotSpotifyTheme {
         // A surface container using the 'background' color from the theme
         Surface(
