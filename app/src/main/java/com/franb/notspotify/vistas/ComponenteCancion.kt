@@ -14,7 +14,7 @@ fun ComponenteCancion(){
     val contexto = LocalContext.current
 
     val viewModel: CancionViewModel = viewModel()
-    var cancion = Cancion("Ejemplo", 0,0)
+    val cancion = Cancion("Ejemplo", 0,0)
 
     Column {
         Text(text = "Now playing")
