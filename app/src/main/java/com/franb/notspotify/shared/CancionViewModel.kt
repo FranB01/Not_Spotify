@@ -1,24 +1,27 @@
 package com.franb.notspotify.shared
 
 import androidx.lifecycle.ViewModel
+import com.franb.notspotify.Cancion
+import com.franb.notspotify.R
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class CancionViewModel: ViewModel(){
-    // Esta variable privada no es accesible desde fuera, y representa
-    // el flow de nuestra variable de estado.
-    private val _redondeo = MutableStateFlow(false)
-
-    // Esta variable publica recoge y actualiza el valor del estado mutable, y es el que usará
-    // la interfaz.
-    val redondeo = _redondeo.asStateFlow()
-
-    fun actualizarSwitch(nuevoValor : Boolean){
-        _redondeo.value = nuevoValor
-    }
-
     private val _playing = MutableStateFlow(false)
     val playing = _playing.asStateFlow()
+
+    fun actualizarPlaying(nuevoValor : Boolean){
+        _playing.value = nuevoValor
+    }
+
+    private val _cancion = MutableStateFlow(Cancion("", R.drawable.smt4,0))
+    val cancion = _cancion.asStateFlow()
+
+    private val _tiempoActual = MutableStateFlow(0)
+    val tiempoActual = _tiempoActual.asStateFlow()
+
+    private val _duracion = MutableStateFlow(0)
+    val duracion = _duracion.asStateFlow()
 
 
 }
