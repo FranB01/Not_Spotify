@@ -17,5 +17,8 @@ class CancionViewModel: ViewModel(){
         _redondeo.value = nuevoValor
     }
 
+    private val _playing = MutableStateFlow(false)
+    val playing = _playing.asStateFlow()
+
 
 }
