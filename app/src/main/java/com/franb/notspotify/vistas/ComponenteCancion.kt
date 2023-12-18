@@ -1,9 +1,11 @@
 package com.franb.notspotify.vistas
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
@@ -48,7 +50,10 @@ fun ComponenteCancion() {
             })
         Text(text = "0:00 / 2:53") // todo
 
-        Row {
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxWidth()
+        ){
             // anterior, siguiente, play/stop, loop, shuffle
             // loop
             Button(onClick = { /*TODO*/ }) {
