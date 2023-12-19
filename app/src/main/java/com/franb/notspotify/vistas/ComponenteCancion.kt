@@ -57,9 +57,8 @@ fun ComponenteCancion() {
                 value = viewModel.tiempoActual.value.toFloat(),
                 valueRange = 0f..viewModel.duracion.value.toFloat(),
                 modifier = Modifier.padding(horizontal = 10.dp),
-                onValueChange = {
-                    /* TODO */
-                })
+                onValueChange = {}
+            )
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()

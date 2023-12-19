@@ -38,5 +38,10 @@ class CancionViewModel: ViewModel(){
     private val _duracion = MutableStateFlow(0)
     val duracion = _duracion.asStateFlow()
 
+    private val _shuffle = MutableStateFlow(false)
+    val shuffle = _shuffle.asStateFlow()
 
+    fun cambiarShuffle(){
+        _shuffle.value = !_shuffle.value
+    }
 }
