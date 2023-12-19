@@ -10,8 +10,11 @@ class CancionViewModel: ViewModel(){
     private val _playing = MutableStateFlow(false)
     val playing = _playing.asStateFlow()
 
-    fun actualizarPlaying(nuevoValor : Boolean){
+    fun cambiarPlaying(nuevoValor : Boolean){
         _playing.value = nuevoValor
+    }
+    fun cambiarPlaying(){
+        _playing.value = !_playing.value
     }
 
     private val _cancion = MutableStateFlow(Cancion("Título de la cancion", R.drawable.smt4, R.raw.smt4_tokyo, null))
@@ -20,6 +23,13 @@ class CancionViewModel: ViewModel(){
     fun cambiarCancion(nuevaCancion: Cancion){
         _cancion.value = nuevaCancion
         // TODO duracion
+    }
+
+    private val _looping = MutableStateFlow(false)
+    val looping = _looping.asStateFlow()
+
+    fun cambiarLooping(){
+        _looping.value = !_looping.value
     }
 
     private val _tiempoActual = MutableStateFlow(0)
