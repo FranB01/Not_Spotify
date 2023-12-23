@@ -27,14 +27,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.franb.notspotify.shared.CancionViewModel
 import com.franb.notspotify.ui.theme.NotSpotifyTheme
 
 @Composable
-fun ComponenteCancion(navController: NavHostController, idCancion: Int?= null) {
+fun ComponenteCancion() {
     val contexto = LocalContext.current
 
     val viewModel: CancionViewModel = viewModel()
@@ -52,14 +49,16 @@ fun ComponenteCancion(navController: NavHostController, idCancion: Int?= null) {
         )
 
         // CONTROLES
-        Column{
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Bottom,
+        ) {
             Slider(
                 value = viewModel.tiempoActual.value.toFloat(),
                 valueRange = 0f..viewModel.duracion.value.toFloat(),
                 modifier = Modifier.padding(horizontal = 10.dp),
-                onValueChange = {
-                    /* TODO */
-                })
+                onValueChange = {}
+            )
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
@@ -75,7 +74,9 @@ fun ComponenteCancion(navController: NavHostController, idCancion: Int?= null) {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 // loop
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {
+                    viewModel.cambiarLooping()
+                }) {
                     Icon(Icons.Rounded.Repeat, "Repetir")
                 }
 
@@ -85,7 +86,9 @@ fun ComponenteCancion(navController: NavHostController, idCancion: Int?= null) {
                 }
 
                 // play pause
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {
+                    viewModel.cambiarPlaying()
+                }) {
                     if (viewModel.playing.value) {
                         Icon(Icons.Rounded.PlayArrow, "Play")
                     } else {
@@ -117,7 +120,7 @@ fun PreviewCancion() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            ComponenteCancion(navController = rememberNavController())
+            ComponenteCancion()
         }
     }
 }
