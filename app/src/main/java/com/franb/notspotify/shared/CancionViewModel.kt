@@ -1,7 +1,6 @@
 package com.franb.notspotify.shared
 
 import androidx.lifecycle.ViewModel
-import com.franb.notspotify.Cancion
 import com.franb.notspotify.R
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

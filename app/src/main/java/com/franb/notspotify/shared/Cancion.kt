@@ -1,4 +1,4 @@
-package com.franb.notspotify
+package com.franb.notspotify.shared
 
 data class Cancion(
     val nombre: String,
