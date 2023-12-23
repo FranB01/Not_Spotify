@@ -76,19 +76,19 @@ fun ComponenteCancion() {
             ) {
                 // loop
                 IconButton(onClick = {
-                    viewModel.cambiarLooping()
+                    viewModel.CambiarLooping()
                 }) {
                     Icon(Icons.Rounded.Repeat, "Repetir")
                 }
 
                 // anterior
-                IconButton(onClick = { viewModel.cancionAnterior() }) {
+                IconButton(onClick = { viewModel.CancionAnterior() }) {
                     Icon(Icons.AutoMirrored.Rounded.KeyboardArrowLeft, "Cancion anterior")
                 }
 
                 // play pause
                 IconButton(onClick = {
-                    viewModel.cambiarPlaying()
+                    viewModel.CambiarPlaying()
                 }) {
                     if (viewModel.playing.value) {
                         Icon(Icons.Rounded.PlayArrow, "Play")
@@ -98,12 +98,12 @@ fun ComponenteCancion() {
                 }
 
                 // siguiente
-                IconButton(onClick = { viewModel.cancionSiguiente() }) {
+                IconButton(onClick = { viewModel.CancionSiguiente() }) {
                     Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, "Cancion siguiente")
                 }
 
                 // shuffle
-                IconButton(onClick = { viewModel.cambiarShuffle() }) {
+                IconButton(onClick = { viewModel.CambiarShuffle() }) {
                     Icon(Icons.Rounded.Shuffle, "Shuffle")
                 }
             }
