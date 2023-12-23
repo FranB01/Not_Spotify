@@ -43,4 +43,22 @@ class CancionViewModel: ViewModel(){
     fun cambiarShuffle(){
         _shuffle.value = !_shuffle.value
     }
+
+    fun cancionAnterior(){
+        // si es la primera cambia a la ultima
+        if (ListaCanciones.lista.indexOf(_cancion.value) == 0){
+            cambiarCancion(ListaCanciones.lista[ListaCanciones.lista.size - 1])
+        } else {
+            cambiarCancion(ListaCanciones.lista[ListaCanciones.lista.indexOf(_cancion.value) - 1])
+        }
+    }
+
+    fun cancionSiguiente(){
+        // si es la ultima cambia a la primera
+        if (ListaCanciones.lista.indexOf(_cancion.value) == ListaCanciones.lista.size - 1){
+            cambiarCancion(ListaCanciones.lista[0])
+        } else {
+            cambiarCancion(ListaCanciones.lista[ListaCanciones.lista.indexOf(_cancion.value) + 1])
+        }
+    }
 }

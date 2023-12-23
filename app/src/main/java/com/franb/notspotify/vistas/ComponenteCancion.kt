@@ -81,7 +81,7 @@ fun ComponenteCancion() {
                 }
 
                 // anterior
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { viewModel.cancionAnterior() }) {
                     Icon(Icons.AutoMirrored.Rounded.KeyboardArrowLeft, "Cancion anterior")
                 }
 
@@ -97,12 +97,12 @@ fun ComponenteCancion() {
                 }
 
                 // siguiente
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { viewModel.cancionSiguiente() }) {
                     Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, "Cancion siguiente")
                 }
 
                 // shuffle
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { viewModel.cambiarShuffle() }) {
                     Icon(Icons.Rounded.Shuffle, "Shuffle")
                 }
             }
