@@ -31,10 +31,10 @@ class CancionViewModel: ViewModel(){
         _looping.value = !_looping.value
     }
 
-    private val _tiempoActual = MutableStateFlow(0)
+    private val _tiempoActual = MutableStateFlow(0L)
     val tiempoActual = _tiempoActual.asStateFlow()
 
-    private val _duracion = MutableStateFlow(0)
+    private val _duracion = MutableStateFlow(0L)
     val duracion = _duracion.asStateFlow()
 
     private val _shuffle = MutableStateFlow(false)

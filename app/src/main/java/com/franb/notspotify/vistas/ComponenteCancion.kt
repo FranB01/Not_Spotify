@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.franb.notspotify.shared.CancionViewModel
+import com.franb.notspotify.shared.MilisAString
 import com.franb.notspotify.ui.theme.NotSpotifyTheme
 
 @Composable
@@ -64,8 +65,8 @@ fun ComponenteCancion() {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 // TODO
-                Text(text = "0:00", modifier = Modifier.padding(horizontal = 10.dp))
-                Text(text = "3:26", modifier = Modifier.padding(horizontal = 10.dp))
+                Text(text = MilisAString(viewModel.tiempoActual.value), modifier = Modifier.padding(horizontal = 10.dp))
+                Text(text = MilisAString(viewModel.duracion.value), modifier = Modifier.padding(horizontal = 10.dp))
             }
 
             // anterior, siguiente, play/stop, loop, shuffle
