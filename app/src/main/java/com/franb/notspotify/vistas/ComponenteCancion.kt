@@ -89,7 +89,10 @@ fun ComponenteCancion(navController: NavHostController) {
                 }
 
                 // anterior
-                IconButton(onClick = { viewModel.CancionAnterior() }) {
+                IconButton(onClick = {
+                    viewModel.CancionAnterior() // cambia el valor de cancion
+                    viewModel.CargarCancion(contexto) // carga la nueva cancion en el exoplayer
+                }) {
                     Icon(Icons.AutoMirrored.Rounded.KeyboardArrowLeft, "Cancion anterior")
                 }
 
@@ -105,7 +108,10 @@ fun ComponenteCancion(navController: NavHostController) {
                 }
 
                 // siguiente
-                IconButton(onClick = { viewModel.CancionSiguiente() }) {
+                IconButton(onClick = {
+                    viewModel.CancionSiguiente()
+                    viewModel.CargarCancion(contexto)
+                }) {
                     Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, "Cancion siguiente")
                 }
 

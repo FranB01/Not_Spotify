@@ -106,14 +106,17 @@ class CancionViewModel : ViewModel() {
     }
 
     fun CambiarCancion(context: Context) {
-        _exoPlayer.value!!.stop()
-        _exoPlayer.value!!.clearMediaItems()
-        // TODO cancion siguiente etc
         if (_shuffle.value){
             CancionRandom()
         } else if (!_looping.value) { // si esta looping no cambia _cancion pero se recarga el exoplayer
             CancionSiguiente()
         }
+        CargarCancion(context)
+    }
+
+    fun CargarCancion(context: Context){
+        _exoPlayer.value!!.stop()
+        _exoPlayer.value!!.clearMediaItems()
         _exoPlayer.value!!.setMediaItem(MediaItem.fromUri(obtenerRuta(context, _cancion.value.archivo)))
         _exoPlayer.value!!.prepare()
         _exoPlayer.value!!.playWhenReady = true
