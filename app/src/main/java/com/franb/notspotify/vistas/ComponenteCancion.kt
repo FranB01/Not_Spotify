@@ -21,21 +21,29 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.franb.notspotify.shared.CancionViewModel
 import com.franb.notspotify.shared.MilisAString
 import com.franb.notspotify.ui.theme.NotSpotifyTheme
 
 @Composable
-fun ComponenteCancion() {
+fun ComponenteCancion(navController: NavHostController) {
     val contexto = LocalContext.current
 
     val viewModel: CancionViewModel = viewModel()
+
+    LaunchedEffect(Unit){
+        viewModel.CrearExoPlayer(contexto)
+        viewModel.SonarMusica(contexto)
+    }
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -64,7 +72,6 @@ fun ComponenteCancion() {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                // TODO
                 Text(text = MilisAString(viewModel.tiempoActual.value), modifier = Modifier.padding(horizontal = 10.dp))
                 Text(text = MilisAString(viewModel.duracion.value), modifier = Modifier.padding(horizontal = 10.dp))
             }
@@ -121,7 +128,7 @@ fun PreviewCancion() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            ComponenteCancion()
+            ComponenteCancion(rememberNavController())
         }
     }
 }

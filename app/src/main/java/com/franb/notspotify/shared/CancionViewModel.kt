@@ -21,7 +21,8 @@ class CancionViewModel : ViewModel() {
     val playing = _playing.asStateFlow()
 
     private val _cancion =
-        MutableStateFlow(Cancion("Título de la cancion", R.drawable.smt4, R.raw.smt4_tokyo, null))
+        //MutableStateFlow(Cancion("Título de la cancion", R.drawable.smt4, R.raw.smt4_tokyo, null))
+        MutableStateFlow(ListaCanciones.lista[0])
     val cancion = _cancion.asStateFlow()
 
     private val _looping = MutableStateFlow(false)
@@ -82,24 +83,35 @@ class CancionViewModel : ViewModel() {
         )
     }
 
+    // Este método se llama cuando el VM se destruya.
+    override fun onCleared() {
+        _exoPlayer.value!!.release()
+        super.onCleared()
+    }
+
     fun CambiarPlaying(nuevoValor: Boolean) {
         _playing.value = nuevoValor
+        if(nuevoValor){
+            // play
+            _exoPlayer.value!!.play()
+        } else {
+            // pausar
+            _exoPlayer.value!!.pause()
+        }
     }
 
     fun CambiarPlaying() {
-        _playing.value = !_playing.value
+        // toggle
+        CambiarPlaying(!_playing.value)
     }
 
     fun CambiarCancion(context: Context) {
-        if (_looping.value){
-            // TODO
-        }
         _exoPlayer.value!!.stop()
         _exoPlayer.value!!.clearMediaItems()
         // TODO cancion siguiente etc
         if (_shuffle.value){
             CancionRandom()
-        } else {
+        } else if (!_looping.value) { // si esta looping no cambia _cancion pero se recarga el exoplayer
             CancionSiguiente()
         }
         _exoPlayer.value!!.setMediaItem(MediaItem.fromUri(obtenerRuta(context, _cancion.value.archivo)))
