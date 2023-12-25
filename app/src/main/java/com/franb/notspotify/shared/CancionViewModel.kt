@@ -21,7 +21,6 @@ class CancionViewModel : ViewModel() {
     val playing = _playing.asStateFlow()
 
     private val _cancion =
-        //MutableStateFlow(Cancion("Título de la cancion", R.drawable.smt4, R.raw.smt4_tokyo, null))
         MutableStateFlow(ListaCanciones.lista[0])
     val cancion = _cancion.asStateFlow()
 
