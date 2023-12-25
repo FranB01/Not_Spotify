@@ -22,11 +22,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -37,8 +39,11 @@ import com.franb.notspotify.ui.theme.NotSpotifyTheme
 @Composable
 fun ComponenteCancion(navController: NavHostController) {
     val contexto = LocalContext.current
-
     val viewModel: CancionViewModel = viewModel()
+
+    val duracion by viewModel.duracion.collectAsStateWithLifecycle()
+    val posicion by viewModel.tiempoActual.collectAsStateWithLifecycle()
+    val playing by viewModel.playing.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit){
         viewModel.CrearExoPlayer(contexto)
@@ -63,17 +68,17 @@ fun ComponenteCancion(navController: NavHostController) {
             verticalArrangement = Arrangement.Bottom,
         ) {
             Slider(
-                value = viewModel.tiempoActual.value.toFloat(),
-                valueRange = 0f..viewModel.duracion.value.toFloat(),
+                value = posicion.toFloat(),
+                valueRange = 0f..duracion.toFloat(),
                 modifier = Modifier.padding(horizontal = 10.dp),
-                onValueChange = {}
+                onValueChange = { /* TODO */ }
             )
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = MilisAString(viewModel.tiempoActual.value), modifier = Modifier.padding(horizontal = 10.dp))
-                Text(text = MilisAString(viewModel.duracion.value), modifier = Modifier.padding(horizontal = 10.dp))
+                Text(text = MilisAString(posicion), modifier = Modifier.padding(horizontal = 10.dp))
+                Text(text = MilisAString(duracion), modifier = Modifier.padding(horizontal = 10.dp))
             }
 
             // anterior, siguiente, play/stop, loop, shuffle
@@ -100,10 +105,10 @@ fun ComponenteCancion(navController: NavHostController) {
                 IconButton(onClick = {
                     viewModel.CambiarPlaying()
                 }) {
-                    if (viewModel.playing.value) {
-                        Icon(Icons.Rounded.PlayArrow, "Play")
-                    } else {
+                    if (playing) {
                         Icon(Icons.Rounded.Pause, "Pausar")
+                    } else {
+                        Icon(Icons.Rounded.PlayArrow, "Play")
                     }
                 }
 

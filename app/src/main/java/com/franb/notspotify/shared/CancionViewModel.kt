@@ -61,8 +61,9 @@ class CancionViewModel : ViewModel() {
                                 _tiempoActual.value = _exoPlayer.value!!.currentPosition
                                 delay(1000)
                             }
-
                         }
+
+                        _playing.value = true
                     }
                     Player.STATE_BUFFERING -> {
                         // El Player está cargando el archivo, preparando la reproducción.
