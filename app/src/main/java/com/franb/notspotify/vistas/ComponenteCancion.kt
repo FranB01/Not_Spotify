@@ -100,6 +100,7 @@ fun ComponenteCancion(navController: NavHostController) {
                 }) {
                     Icon(Icons.AutoMirrored.Rounded.KeyboardArrowLeft, "Cancion anterior")
                 }
+                //test
 
                 // play pause
                 IconButton(onClick = {
