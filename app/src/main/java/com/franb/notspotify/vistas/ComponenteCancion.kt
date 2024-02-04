@@ -71,7 +71,7 @@ fun ComponenteCancion(navController: NavHostController) {
                 value = posicion.toFloat(),
                 valueRange = 0f..duracion.toFloat(),
                 modifier = Modifier.padding(horizontal = 10.dp),
-                onValueChange = { /* TODO */ }
+                onValueChange = { viewModel.seek(it.toLong()) }
             )
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,

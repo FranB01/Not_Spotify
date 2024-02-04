@@ -155,5 +155,9 @@ class CancionViewModel : ViewModel() {
     fun CambiarValorCancion(cancionNueva : Cancion){
         _cancion.value = cancionNueva
     }
+
+    fun seek(tiempo : Long){
+        _exoPlayer.value?.seekTo(tiempo)
+    }
 }
 
